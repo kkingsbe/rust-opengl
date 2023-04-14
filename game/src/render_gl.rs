@@ -4,19 +4,23 @@ use resources::Resources;
 
 use crate::resources;
 
-#[derive(Debug)]
+#[derive(Debug, Fail)]
 pub enum Error {
+    #[fail(display = "Failed to load resource {}", name)]
     ResourceLoad {
         name: String,
-        inner: resources::Error
+        #[cause] inner: resources::Error
     },
+    #[fail(display = "Can not determine shader type for resource {}", name)]
     CanNotDetermineShaderTypeForResource {
         name: String
     },
+    #[fail(display = "Failed to compile shader {}", name)]
     CompileError {
         name: String,
         message: String
     },
+    #[fail(display = "Failed to link program {}", name)]
     LinkError {
         name: String,
         message: String

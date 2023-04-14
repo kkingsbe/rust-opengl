@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 sdl2 = { version = "0.35.2", features = ["bundled"] }
 gl = { path = "lib/gl" }
+failure = "0.1"
 
 [build-dependencies]
 walkdir = "2.1"
